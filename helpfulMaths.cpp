@@ -12,37 +12,36 @@ typedef set< string > ss;
 typedef set< int > si;
 typedef set< char > sc;
 
-int result(string s, int k) {
-    uci charData;
-    for(int i = 0; i < k; i++) {
-        charData['A' + i] = 0;
+string result(string s) {
+    int num;
+    char ch;
+    vi nums;
+    stringstream ss(s);
+    while(ss>>num) {
+        nums.push_back(num);
     }
-    for(int i =0; i < s.length(); i++) {
-        charData[s[i]]++;
-    }
-    unordered_map<char, int> :: iterator it = charData.begin();
-
-    int min = it->second;
-
-    for(;it!= charData.end(); it++) {
-        if(it->second < min) {
-            min = it->second;
+    
+    sort(nums.begin(), nums.end());
+    
+    for(int i = 0,j=0; i < s.length(); i++) {
+        if(s[i] >= '0' && s[i] <= '9') {
+            int num = nums[j];
+            s[i] = num + '0';
+            j++;
         }
     }
 
-    return min*charData.size();
+    //cout<<s;
+
+    return s;
 }
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     //Insert your f**king code here
-    int n;
-    cin>>n;
-    int k;
-    cin>>k;
-    string s;
-    cin>>s;
-    cout<<result(s, k);    
+    string summans;
+    cin>>summans;
+    cout<<result(summans);
     return 0;
 }

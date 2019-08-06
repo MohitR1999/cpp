@@ -12,25 +12,25 @@ typedef set< string > ss;
 typedef set< int > si;
 typedef set< char > sc;
 
-int result(string s, int k) {
-    uci charData;
-    for(int i = 0; i < k; i++) {
-        charData['A' + i] = 0;
+void res(string s) {
+    uii numData;
+    int k = 0;
+    for(int i = 0; i < s.length(); i++) {
+        numData[s[i]-'0']++;
     }
-    for(int i =0; i < s.length(); i++) {
-        charData[s[i]]++;
+
+    if(numData[0] != numData[1]) {
+        cout<<1<<endl;
+        cout<<s<<endl;
+        return;
     }
-    unordered_map<char, int> :: iterator it = charData.begin();
 
-    int min = it->second;
-
-    for(;it!= charData.end(); it++) {
-        if(it->second < min) {
-            min = it->second;
+    else {
+        cout<<2<<endl;
+        cout<<s[0]<<" "<<s.substr(1);
         }
-    }
 
-    return min*charData.size();
+
 }
 
 int main() {
@@ -39,10 +39,8 @@ int main() {
     //Insert your f**king code here
     int n;
     cin>>n;
-    int k;
-    cin>>k;
     string s;
     cin>>s;
-    cout<<result(s, k);    
+    res(s);
     return 0;
 }
